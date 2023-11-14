@@ -15,6 +15,10 @@ body{
     //font-family: 'EB Garamond', serif;
     font-family: v.$mainFont;
     font-size: 1.6rem;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 
 p{

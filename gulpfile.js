@@ -63,14 +63,23 @@ function versionAvif(done) {
   done();
 }
 
+function javascript(done) {
+  src('src/js/**/*.js')
+  .pipe( dest('build/js') );
+
+  done();
+}
+
 function dev(done) {           
   watch('src/scss/**/*.scss', css); // Ejecutando la funcion css cuando se detecten cambios en los archivos SASS
+  watch('src/js/**/*.js', javascript);
  
   done();
 }
 
 exports.css = css; // Exportando la funcion css para que gulp la pueda ejecutar con el comando gulp css
+exports.js = javascript;
 exports.images = images;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.dev = parallel(images, versionWebp, versionAvif, dev); // Exportando la funcion dev, images, versionWebp y versionAvif
+exports.dev = parallel(images, versionWebp, versionAvif, javascript, dev); // Exportando la funcion dev, images, versionWebp y versionAvif
